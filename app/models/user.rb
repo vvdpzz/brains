@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   before_create :create_login
   before_create :ensure_authentication_token
   
+  acts_as_voter
+  
   protected
     def create_login
       if self.username.empty?
