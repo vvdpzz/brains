@@ -1,7 +1,10 @@
 class PhotosController < ApplicationController
+  
   before_filter :authenticate_user!, :only => [:new, :create]
+  before_filter :vote_init, :only => [:up, :down]
+  
   def index
-    
+    @photos = Photo.all
   end
   
   def new
@@ -16,10 +19,23 @@ class PhotosController < ApplicationController
   end
   
   def show
-    
+    @photo = Photo.find params[:id]
   end
   
   def destroy
     
   end
+  
+  def up
+    current_user.vote_exclusively_for @photo
+  end
+  
+  def down
+    current_user.vote_exclusively_against @photo
+  end
+  
+  protected
+    def vote_init
+      @photo = Photo.select("id").find_by_id(params[:id])
+    end
 end

@@ -14,10 +14,11 @@
 ActiveRecord::Schema.define(:version => 20111012023753) do
 
   create_table "photos", :force => true do |t|
-    t.integer  "user_id",                    :null => false
-    t.string   "username",                   :null => false
+    t.integer  "user_id",                      :null => false
+    t.string   "username",                     :null => false
     t.string   "image"
     t.string   "salt"
+    t.float    "rank",        :default => 0.0
     t.integer  "votes_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"

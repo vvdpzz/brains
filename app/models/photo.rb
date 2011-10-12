@@ -4,4 +4,6 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, PhotoUploader
   
   acts_as_voteable
+  
+  default_scope order("created_at DESC")
 end

@@ -1,3 +1,10 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
 .fluploader_wrapper{
 	display: inline;
 	position: relative;
@@ -18,3 +25,21 @@
 .uiButton:hover{text-decoration:none}
 .uiButton:active{background:#ddd;border-bottom-color:#999;box-shadow:0 1px 0 rgba(0, 0, 0, .05);-webkit-box-shadow:0 1px 0 rgba(0, 0, 0, .05)}
 .uiButton .select-photo{background:none;border:0;color:#333;cursor:pointer;display:-moz-inline-box;display:inline-block;font-family:'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;font-size: 12px;font-weight:bold;margin:0;outline:none;padding:1px 0 2px;white-space:nowrap}
+
+#photo{
+  text-align:center;
+  margin:0 auto;
+}
+
+.up-rect{
+  width:120px;
+  height:120px;
+  background:rgba(0,0,0,.7);
+  font-size:50px;
+  text-align:center;
+  font-weight:bold;
+  color:white;
+  margin-left:100px;
+  line-height:110px;
+  @include border-radius(10px)
+}

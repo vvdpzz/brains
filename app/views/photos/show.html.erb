@@ -1,0 +1,42 @@
+<div id="up">UP</div>
+<div id="score"><%= @photo.plusminus %></div>
+<div id="down">DOWN</div>
+
+<div id="photo">
+  <%= image_tag @photo.image.url %>
+</div>
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+
+  $("#up").bind("click",function(){
+    var $addBox = $("<div class=\"up-rect\" style='display:none'>+1</div>");
+    var boxTop  = (document.documentElement.clientHeight-120)/2.5;
+		var boxLeft = (document.documentElement.clientWidth-120)/2.5;
+    $addBox.css("position","absolute").css("top",boxTop).css("left",boxLeft);
+    $("#up").append($addBox);
+    $addBox.fadeIn(500);
+    setTimeout(function(){
+      $addBox.fadeOut(800);
+      },200);
+      // 加 上 你 的 提 交ajax
+    })
+    $("#down").bind("click",function(){
+       var $addBox = $("<div class=\"up-rect\" style='display:none'>-1</div>");
+        var boxTop  = (document.documentElement.clientHeight-120)/2.5;
+    		var boxLeft = (document.documentElement.clientWidth-120)/2.5;
+        $addBox.css("position","absolute").css("top",boxTop).css("left",boxLeft);
+        $("#down").append($addBox);;
+      
+      $addBox.fadeIn(500);
+      setTimeout(function(){
+        $addBox.fadeOut(800);
+        },200);
+        // 加 上 你 的 提 交ajax
+      })
+    });  
+</script>

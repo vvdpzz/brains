@@ -9,6 +9,16 @@
 </div>
 <% end %>
 
+<ul class="media-grid">
+  <% @photos.each do |photo| %>
+    <li>
+      <a href="/photos/<%= photo.id %>">
+        <img class="thumbnail" src="<%= photo.image.url(:l) %>">
+      </a>
+    </li>
+  <% end %>
+</ul>
+
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
   	<% key = Rails.application.config.session_options[:key] %>
@@ -23,7 +33,7 @@
   		script    		: '/photos',
   		cancelImg		: '/assets/cancel.png',
   		auto			: true,
-  		multi			: false,
+  		multi			: true,
   		removeCompleted : true,
   		fileExt			: '*.jpg;*.jpeg;*.gif;*.png',
   		fileDesc		: 'Image Files (.JPG, .JPEG, .GIF, .PNG)',
