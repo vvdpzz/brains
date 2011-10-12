@@ -1,0 +1,42 @@
+<% if user_signed_in? %>
+<div class="fluploader_wrapper">
+	<div class="fluploader_select uiButton">
+		<div class="select-photo">Select Photo</div>
+	</div>
+	<div class="fluploader_swfdiv">
+		<input id="uploadify" name="uploadify" type="file" />
+	</div>
+</div>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+  	<% key = Rails.application.config.session_options[:key] %>
+  	var uploadify_script_data = {};
+  	var csrf_param = $('meta[name=csrf-param]').attr('content');
+  	var csrf_token = $('meta[name=csrf-token]').attr('content');
+  	uploadify_script_data[csrf_param] = encodeURI(encodeURIComponent(csrf_token));
+  	uploadify_script_data['<%= key %>'] = '<%= cookies[key] %>';
+
+  	$('#uploadify').uploadify({
+  		uploader  		: '/assets/uploadify.swf',
+  		script    		: '/photos',
+  		cancelImg		: '/assets/cancel.png',
+  		auto			: true,
+  		multi			: false,
+  		removeCompleted : true,
+  		fileExt			: '*.jpg;*.jpeg;*.gif;*.png',
+  		fileDesc		: 'Image Files (.JPG, .JPEG, .GIF, .PNG)',
+  		scriptData		: uploadify_script_data,
+  		wmode			: "transparent",
+  		hideButton		: true,
+  		height			: 21,
+  		width			: 94,
+  		queueID			: 'photoUploadQueue',
+  		onComplete		: function(event, ID, fileObj, response, data) {
+  			response = eval('(' + response + ')');
+  			alert(response.photoUrl);
+  		}
+  	});
+  });
+</script>

@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require swfobject
+//= require jquery.uploadify
 //= require_tree .

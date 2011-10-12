@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   
   acts_as_voter
   
+  has_many :photos
+  
   protected
     def create_login
       if self.username.empty?
